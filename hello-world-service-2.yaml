@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-2
+  annotations:
+    cloud.google.com/backend-config: '{"ports": {"public":"public-backend"}}'
+spec:
+  type: NodePort
+  selector:
+    greeting: hello
+    version: two
+  ports:
+  - protocol: TCP
+    name: public
+    port: 80
+    targetPort: 8080
+  - protocol: TCP
+    name: private
+    port: 81
+    targetPort: 8080
